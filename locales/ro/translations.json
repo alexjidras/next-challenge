@@ -1,0 +1,13 @@
+{
+  "heading": {
+    "about_us": "Despre Noi",
+    "welcome": "Bine ați venit!"
+  },
+  "link": {
+    "about": "Despre",
+    "home": "Acasă"
+  },
+  "url": {
+    "about": "/despre"
+  }
+}

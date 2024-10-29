@@ -1,0 +1,13 @@
+{
+  "heading": {
+    "about_us": "About Us",
+    "welcome": "Welcome!"
+  },
+  "link": {
+    "about": "About",
+    "home": "Home"
+  },
+  "url": {
+    "about": "/about"
+  }
+}
