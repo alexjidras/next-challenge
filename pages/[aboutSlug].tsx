@@ -6,17 +6,27 @@ import { SharedStaticProps } from '@/types/SharedStaticProps';
 export default function About() {
   const { t } = useTranslation();
 
-  return <h1>{t('heading.about_us')}</h1>;
+  return (
+    <div className="px-6 py-4">
+      <h1 className="font-bold text-lg">{t('heading.about_us')}</h1>
+    </div>
+  );
 }
 
-const paths = [
-  { params: { aboutSlug: 'about' }, locale: 'en' },
-  { params: { aboutSlug: 'despre' }, locale: 'ro' },
-];
+const aboutSlugs: { [locale: string]: string } = {
+  en: 'about',
+  ro: 'despre',
+};
 
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = ({ locales = [] }) => {
   return {
-    paths,
+    paths: locales.map((locale) => {
+      const aboutSlug = aboutSlugs[locale];
+      return {
+        params: { aboutSlug },
+        locale,
+      };
+    }),
     fallback: false,
   };
 };
@@ -24,10 +34,10 @@ export const getStaticPaths: GetStaticPaths = () => {
 export const getStaticProps: GetStaticProps<SharedStaticProps> = async () => {
   return {
     props: {
-      pagePathnames: paths.reduce(
-        (acc, item) => ({
+      pagePathnames: Object.entries(aboutSlugs).reduce(
+        (acc, [locale, aboutSlug]) => ({
           ...acc,
-          [item.locale]: `/${item.params.aboutSlug}`,
+          [locale]: `/${aboutSlug}`,
         }),
         {},
       ),

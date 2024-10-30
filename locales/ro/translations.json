@@ -1,7 +1,7 @@
 {
   "heading": {
     "about_us": "Despre Noi",
-    "welcome": "Bine ați venit!"
+    "welcome": "Bine ați venit {name}!"
   },
   "link": {
     "about": "Despre",

@@ -1,7 +1,7 @@
 {
   "heading": {
     "about_us": "About Us",
-    "welcome": "Welcome!"
+    "welcome": "Welcome {name}!"
   },
   "link": {
     "about": "About",
