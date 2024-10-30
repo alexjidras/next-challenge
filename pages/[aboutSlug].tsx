@@ -21,7 +21,8 @@ const aboutSlugs: { [locale: string]: string } = {
 export const getStaticPaths: GetStaticPaths = ({ locales = [] }) => {
   return {
     paths: locales.map((locale) => {
-      const aboutSlug = aboutSlugs[locale];
+      const aboutSlug = aboutSlugs[locale] ?? aboutSlugs.en;
+
       return {
         params: { aboutSlug },
         locale,
@@ -31,16 +32,19 @@ export const getStaticPaths: GetStaticPaths = ({ locales = [] }) => {
   };
 };
 
-export const getStaticProps: GetStaticProps<SharedStaticProps> = async () => {
+export const getStaticProps: GetStaticProps<SharedStaticProps> = async ({
+  locales = [],
+}) => {
   return {
     props: {
-      pagePathnames: Object.entries(aboutSlugs).reduce(
-        (acc, [locale, aboutSlug]) => ({
+      pagePathnames: locales.reduce((acc, locale) => {
+        const aboutSlug = aboutSlugs[locale] ?? aboutSlugs.en;
+
+        return {
           ...acc,
           [locale]: `/${aboutSlug}`,
-        }),
-        {},
-      ),
+        };
+      }, {}),
     },
   };
 };

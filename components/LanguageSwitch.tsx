@@ -2,20 +2,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 interface LanguageSwitchProps {
-  pagePathnames?: {
-    [locale: string]: string;
-  };
+  pagePathnames?: { [locale: string]: string };
 }
 
 export const LanguageSwitch = ({ pagePathnames }: LanguageSwitchProps) => {
-  const { locale: activeLocale, locales, pathname } = useRouter();
+  const { locale: activeLocale, locales, asPath } = useRouter();
 
   return (
     <div className="ml-auto">
       {locales?.map((locale) => {
         return (
           <Link
-            href={pagePathnames?.[locale] ?? pathname}
+            href={pagePathnames?.[locale] ?? asPath}
             locale={locale}
             key={locale}
             className={
